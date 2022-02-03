@@ -1,51 +1,46 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 
-const GoalForm = ({
-  addGoal,
-  newNameOfGoal,
-  handleNameOfGoalChange,
-  newStartDate,
-  handleStartDateChange,
-  newMorningReminder,
-  handleMorningReminderChange,
-  newAfternoonReminder,
-  handleAfternoonReminderChange,
-  newEveningReminder,
-  handleEveningReminderChange,
-  newEmail,
-  handleEmailChange,
-  newPhoneNumber,
-  handlePhoneNumberChange,
-}) => {
+const GoalForm = () => {
+  const { register, handleSubmit } = useForm();
+
   return (
     <div>
-      <form onSubmit={addGoal}>
+      <form
+        onSubmit={handleSubmit((data) => {
+          console.log(data);
+        })}
+      >
         <div>
           <p>
-            GOAL:
-            <input value={newNameOfGoal} onChange={handleNameOfGoalChange} />
+            Mini Habit:
+            <input {...register("habit")} />
           </p>
           <p>
-            date:
-            <input value={newStartDate} onChange={handleStartDateChange} />
+            start date:
+            <input {...register("startDate")} />
+          </p>
+          <p>
+            end date:
+            <input {...register("endDate")} />
           </p>
           <p>
             Morning reminder:
-            <input value={newMorningReminder} onChange={handleMorningReminderChange} />
+            <input {...register("morningReminder")} />
           </p>
           <p>
             Afternoon reminder:
-            <input value={newAfternoonReminder} onChange={handleAfternoonReminderChange} />
+            <input {...register("afternoonReminder")} />
           </p>
           <p>
             Evening reminder:
-            <input value={newEveningReminder} onChange={handleEveningReminderChange} />
+            <input {...register("eveningReminder")} />
           </p>
           <p>
-            E-mail: <input value={newEmail} onChange={handleEmailChange} />
+            E-mail: <input {...register("email")} />
           </p>
           <p>
-            Phone number: <input value={newPhoneNumber} onChange={handlePhoneNumberChange} />
+            Phone number: <input {...register("phoneNumber")} />
           </p>
         </div>
         <div>
