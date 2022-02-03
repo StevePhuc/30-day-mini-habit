@@ -16,7 +16,7 @@
             status = 200
         ```
     - need `npm install -g netlify-cli` 
-    - run `netlify-dev` (auto detect frontend) https://youtu.be/bVmUHvVK8Hs?t=410
+    - run `netlify dev` (auto detect frontend) https://youtu.be/bVmUHvVK8Hs?t=410
     - using .evn https://youtu.be/bVmUHvVK8Hs?t=566
     - git https://github.com/jamesqquick/Build-a-JAMstack-Course-Tracker-with-React-Serverless-and-Airtable
 
