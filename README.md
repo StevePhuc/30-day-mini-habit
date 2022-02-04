@@ -76,6 +76,8 @@ create table habit (
   habit_name text not null,
   start_date date not null,
   end_date date not null,
+  reminder_time json,
+  reminder_type json,
   inserted_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 

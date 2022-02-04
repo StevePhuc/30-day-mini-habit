@@ -4,9 +4,12 @@ import { Controller } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import Icon from "@mui/material/Icon";
 import { supabase } from "../database/supabaseClient";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const { handleSubmit, reset, control, formState } = useForm();
+  const navigate = useNavigate();
+
   const { errors } = formState;
 
   const [loading, setLoading] = useState(true);
@@ -15,32 +18,17 @@ const Form = () => {
     async function getHabit() {
       try {
         setLoading(true);
-        let { data, error, status } = await supabase
-          .from("habit")
-          .select("*,reminder_time(*),reminder_type(*)")
-          .limit(1)
-          .single();
+        let { data, error, status } = await supabase.from("habit").select("*").limit(1).single();
 
         if (error && status !== 406) {
           throw error;
+        } else if (error && status === 401) {
+          navigate("/login");
         }
 
         if (data) {
-          const habitVo = { ...data };
-
-          const sort_time = data?.reminder_time?.sort((a, b) => {
-            return Date.parse("01/01/1999 " + a?.time) > Date.parse("01/01/1999 " + b?.time)
-              ? 1
-              : -1;
-          });
-          habitVo.morningReminder = sort_time[0].time;
-          habitVo.afternoonReminder = sort_time[1].time;
-          habitVo.eveningReminder = sort_time[2].time;
-
-          habitVo.email = data?.reminder_type.find((item) => item.type === "email")?.value;
-          habitVo.phoneNumber = data?.reminder_type.find((item) => item.type === "sms")?.value;
-
-          console.log(habitVo);
+          const habitVo = { ...data, ...data.reminder_time, ...data.reminder_type };
+          console.log("habitVo", habitVo);
 
           reset(habitVo);
         }
@@ -51,7 +39,39 @@ const Form = () => {
       }
     }
     getHabit();
-  }, [reset]);
+  }, [reset, navigate]);
+
+  const handleSave = async (data) => {
+    try {
+      console.log("data save", data);
+      setLoading(true);
+
+      const updates = {
+        habit_name: data.habit_name,
+        start_date: data.start_date,
+        end_date: data.end_date,
+        reminder_time: {
+          morningReminder: data.morningReminder,
+          afternoonReminder: data.afternoonReminder,
+          eveningReminder: data.eveningReminder,
+        },
+        reminder_type: {
+          email: data.email,
+          phoneNumber: data.phoneNumber,
+        },
+      };
+
+      let { error } = await supabase.from("habit").update(updates).match({ id: data.id });
+
+      if (error) {
+        throw error;
+      }
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -76,11 +96,7 @@ const Form = () => {
 
               <div className="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
                 <h3 className="pt-4 text-2xl text-center">Set up your MINI GOAL</h3>
-                <form
-                  onSubmit={handleSubmit((data) => {
-                    console.log(data);
-                  })}
-                >
+                <form onSubmit={handleSubmit(handleSave)}>
                   <div>
                     <div className="mb-4">
                       <div>
@@ -279,7 +295,7 @@ const Form = () => {
                   <div className="mb-6 text-center">
                     <button
                       className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-                      type="button"
+                      type="submit"
                     >
                       SAVE
                     </button>
