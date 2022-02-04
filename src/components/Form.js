@@ -64,11 +64,11 @@ const Form = () => {
   return (
     <>
       <div className="font-mono bg-gray-400 w-full">
-        <div className=" mx-auto">
-          <div className="flex justify-center px-6 my-12">
-            <div className="w-full xl:w-3/4 lg:w-11/12 flex">
+        <div className=" w-full">
+          <div className="w-full flex justify-center ">
+            <div className="w-full xl:w-3/4 lg:w-11/12 flex width:100%">
               <div
-                className="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
+                className="h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
                 style={{
                   backgroundImage: `url('https://pbs.twimg.com/media/ETsUtf9UYAABhMo.jpg')`,
                 }}
@@ -240,7 +240,6 @@ const Form = () => {
                             required
                             helperText={errors?.email?.message}
                             label="Email"
-                            autoFocus
                             id="email"
                             variant="outlined"
                             fullWidth
@@ -266,7 +265,6 @@ const Form = () => {
                             required
                             helperText={errors?.phoneNumber?.message}
                             label="Phone Number"
-                            autoFocus
                             id="phoneNumber"
                             variant="outlined"
                             fullWidth
