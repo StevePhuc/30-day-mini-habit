@@ -21,7 +21,8 @@ export default function Login() {
     const { error } = await signIn({ email, password });
 
     if (error) {
-      alert("error signing in");
+      console.log("error", error);
+      alert("Error signing in, please check: " + (error?.message || "Contact support"));
     } else {
       // Redirect user to Dashboard
       navigate("/");
