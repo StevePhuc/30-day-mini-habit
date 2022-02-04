@@ -1,13 +1,65 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Controller } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import Icon from "@mui/material/Icon";
-// import Button from "@mui/material/Button";
+import { supabase } from "../database/supabaseClient";
 
 const Form = () => {
-  const { handleSubmit, control, formState } = useForm();
+  const { handleSubmit, reset, control, formState } = useForm();
   const { errors } = formState;
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function getHabit() {
+      try {
+        setLoading(true);
+        let { data, error, status } = await supabase
+          .from("habit")
+          .select("*,reminder_time(*),reminder_type(*)")
+          .limit(1)
+          .single();
+
+        if (error && status !== 406) {
+          throw error;
+        }
+
+        if (data) {
+          const habitVo = { ...data };
+
+          const sort_time = data?.reminder_time?.sort((a, b) => {
+            return Date.parse("01/01/1999 " + a?.time) > Date.parse("01/01/1999 " + b?.time)
+              ? 1
+              : -1;
+          });
+          habitVo.morningReminder = sort_time[0].time;
+          habitVo.afternoonReminder = sort_time[1].time;
+          habitVo.eveningReminder = sort_time[2].time;
+
+          habitVo.email = data?.reminder_type.find((item) => item.type === "email")?.value;
+          habitVo.phoneNumber = data?.reminder_type.find((item) => item.type === "sms")?.value;
+
+          console.log(habitVo);
+
+          reset(habitVo);
+        }
+      } catch (error) {
+        alert(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+    getHabit();
+  }, [reset]);
+
+  if (loading) {
+    return (
+      <div className="font-mono bg-gray-400 w-full">
+        <div className=" mx-auto">Loading</div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -35,7 +87,7 @@ const Form = () => {
                         <Icon color="action">self_improvement</Icon>
                       </div>
                       <Controller
-                        name="habit"
+                        name="habit_name"
                         control={control}
                         render={({ field }) => (
                           <TextField
@@ -46,7 +98,7 @@ const Form = () => {
                             helperText={errors?.habit?.message}
                             label="Habit"
                             autoFocus
-                            id="habit"
+                            id="habit_name"
                             variant="outlined"
                             fullWidth
                           />
@@ -56,18 +108,18 @@ const Form = () => {
                     <Icon color="action">calendar_month</Icon>
                     <div className="mb-4 ">
                       <Controller
-                        name="startDate"
+                        name="start_date"
                         control={control}
                         render={({ field }) => (
                           <TextField
                             {...field}
                             type="date"
                             className="block mb-2 text-sm font-bold text-gray-700"
-                            error={!!errors.startDate}
+                            error={!!errors.start_date}
                             required
-                            helperText={errors?.startDate?.message}
+                            helperText={errors?.start_date?.message}
                             label="Start Date"
-                            id="startDate"
+                            id="start_date"
                             variant="outlined"
                             fullWidth
                             InputLabelProps={{
@@ -80,18 +132,18 @@ const Form = () => {
 
                     <div className="mb-4 ">
                       <Controller
-                        name="endDate"
+                        name="end_date"
                         control={control}
                         render={({ field }) => (
                           <TextField
                             {...field}
                             type="date"
                             className="block mb-2 text-sm font-bold text-gray-700"
-                            error={!!errors.endDate}
+                            error={!!errors.end_date}
                             required
-                            helperText={errors?.endDate?.message}
+                            helperText={errors?.end_date?.message}
                             label="End Date"
-                            id="endDate"
+                            id="end_date"
                             variant="outlined"
                             fullWidth
                             InputLabelProps={{
