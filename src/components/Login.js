@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 export default function Login() {
   const emailRef = useRef();
