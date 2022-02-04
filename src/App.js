@@ -1,30 +1,22 @@
 import "./App.css";
-import { useEffect, useState } from "react";
 import Form from "./components/Form";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/Auth";
 
 function App() {
-  //https://github.com/jamesqquick/Build-a-JAMstack-Course-Tracker-with-React-Serverless-and-Airtable/blob/master/src/App.js
-
-  const [habit, setHabit] = useState({});
-
-  useEffect(() => {
-    const loadHabit = async () => {
-      try {
-        const res = await fetch("/api/habit");
-        const habit = await res.json();
-        console.log("habit", habit);
-        setHabit(habit);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    loadHabit();
-  }, []);
-
   return (
-    <div className="wrapper">
-      <h1 className="text-3xl font-bold underline">{habit?.text || "Loading"}</h1>
-      <Form />
+    <div>
+      <BrowserRouter>
+        <AuthProvider>
+          <Routes>
+            <Route exact path="/" element={<Form />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </AuthProvider>
+      </BrowserRouter>
     </div>
   );
 }
