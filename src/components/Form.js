@@ -5,10 +5,13 @@ import TextField from "@mui/material/TextField";
 import Icon from "@mui/material/Icon";
 import { supabase } from "../database/supabaseClient";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/Auth";
 
 const Form = () => {
   const { handleSubmit, reset, control, formState } = useForm();
   const navigate = useNavigate();
+
+  const { user } = useAuth();
 
   const { errors } = formState;
 
@@ -46,7 +49,7 @@ const Form = () => {
       console.log("data save", data);
       setLoading(true);
 
-      const updates = {
+      const habitVo = {
         habit_name: data.habit_name,
         start_date: data.start_date,
         end_date: data.end_date,
@@ -61,7 +64,14 @@ const Form = () => {
         },
       };
 
-      let { error } = await supabase.from("habit").update(updates).match({ id: data.id });
+      let error;
+      if (data?.id) {
+        const response = await supabase.from("habit").update(habitVo).match({ id: data.id });
+        error = response.error;
+      } else {
+        const response = await supabase.from("habit").insert({ ...habitVo, user_id: user.id });
+        error = response.error;
+      }
 
       if (error) {
         throw error;
