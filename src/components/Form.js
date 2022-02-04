@@ -192,6 +192,9 @@ const Form = () => {
                             id="email"
                             variant="outlined"
                             fullWidth
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
                           />
                         )}
                       />
@@ -215,6 +218,9 @@ const Form = () => {
                             id="phoneNumber"
                             variant="outlined"
                             fullWidth
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
                           />
                         )}
                       />
