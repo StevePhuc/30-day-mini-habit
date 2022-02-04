@@ -1,4 +1,14 @@
+import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/Auth";
+
 const Header = () => {
+  const { user, signOut } = useAuth();
+
+  async function handleSignOut() {
+    // Ends user session
+    await signOut();
+  }
+
   return (
     <>
       <nav className="w-full py-6 bg-white w-screen">
@@ -16,9 +26,7 @@ const Header = () => {
                 clipRule="evenodd"
               />
             </svg>
-            <a href="#" className="font-bold text-xl">
-              30-DAY-MINI-HABIT
-            </a>
+            <span className="font-bold text-xl">30-DAY-MINI-HABIT</span>
           </section>
           <section>
             <button className="flex md:hidden hover:bg-gray-100 p-2 rounded-full transition-all focus:ring focus:ring-purple-500 focus:ring-opacity-25 active:bg-gray-200 outline-none">
@@ -36,22 +44,38 @@ const Header = () => {
               </svg>
             </button>
             <ul className="md:flex hidden space-x-4">
-              <li>
-                <a
-                  href="#"
-                  className="bg-transparent  px-4 py-1 rounded-xl border-purple-500 border-2 text-purple-500 font-semibold hover:bg-gray-100 active:bg-gray-200 focus:ring focus:ring-purple-500 focus:ring-opacity-25 outline-none"
-                >
-                  Login
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="bg-purple-500 px-4 py-1 rounded-xl border-purple-500 border-2 text-white hover:bg-purple-400 active:bg-purple-600 focus:ring focus:ring-purple-500 focus:ring-opacity-25 outline-none"
-                >
-                  Register
-                </a>
-              </li>
+              {!user?.id ? (
+                <>
+                  <li>
+                    <Link
+                      to="/login"
+                      className="bg-transparent  px-4 py-1 rounded-xl border-purple-500 border-2 text-purple-500 font-semibold hover:bg-gray-100 active:bg-gray-200 focus:ring focus:ring-purple-500 focus:ring-opacity-25 outline-none"
+                    >
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/signup"
+                      className="bg-purple-500 px-4 py-1 rounded-xl border-purple-500 border-2 text-white hover:bg-purple-400 active:bg-purple-600 focus:ring focus:ring-purple-500 focus:ring-opacity-25 outline-none"
+                    >
+                      Sign up
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link
+                      onClick={handleSignOut}
+                      to="/login"
+                      className="bg-transparent  px-4 py-1 rounded-xl border-purple-500 border-2 text-purple-500 font-semibold hover:bg-gray-100 active:bg-gray-200 focus:ring focus:ring-purple-500 focus:ring-opacity-25 outline-none"
+                    >
+                      Logout
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </section>
         </div>
