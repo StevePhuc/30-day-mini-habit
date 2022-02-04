@@ -6,6 +6,7 @@ import Icon from "@mui/material/Icon";
 import { supabase } from "../database/supabaseClient";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
+import { addDays, format } from "date-fns";
 
 const Form = () => {
   const { handleSubmit, reset, control, formState } = useForm();
@@ -34,6 +35,14 @@ const Form = () => {
           console.log("habitVo", habitVo);
 
           reset(habitVo);
+        } else {
+          reset({
+            start_date: format(new Date(), "yyyy-MM-dd"),
+            end_date: format(addDays(new Date(), 30), "yyyy-MM-dd"),
+            morningReminder: "09:00:00",
+            afternoonReminder: "15:00:00",
+            eveningReminder: "20:00:00",
+          });
         }
       } catch (error) {
         alert(error.message);
@@ -118,6 +127,7 @@ const Form = () => {
                         render={({ field }) => (
                           <TextField
                             {...field}
+                            placeholder="Example: 15 minutes yoga"
                             className="block mb-2 text-sm font-bold text-gray-700"
                             error={!!errors.habit}
                             required
