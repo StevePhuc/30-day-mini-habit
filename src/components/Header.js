@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <>
@@ -16,9 +18,7 @@ const Header = () => {
                 clipRule="evenodd"
               />
             </svg>
-            <a href="#" className="font-bold text-xl">
-              30-DAY-MINI-HABIT
-            </a>
+            <span className="font-bold text-xl">30-DAY-MINI-HABIT</span>
           </section>
           <section>
             <button className="flex md:hidden hover:bg-gray-100 p-2 rounded-full transition-all focus:ring focus:ring-purple-500 focus:ring-opacity-25 active:bg-gray-200 outline-none">
@@ -37,20 +37,20 @@ const Header = () => {
             </button>
             <ul className="md:flex hidden space-x-4">
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/login"
                   className="bg-transparent  px-4 py-1 rounded-xl border-purple-500 border-2 text-purple-500 font-semibold hover:bg-gray-100 active:bg-gray-200 focus:ring focus:ring-purple-500 focus:ring-opacity-25 outline-none"
                 >
                   Login
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/signup"
                   className="bg-purple-500 px-4 py-1 rounded-xl border-purple-500 border-2 text-white hover:bg-purple-400 active:bg-purple-600 focus:ring focus:ring-purple-500 focus:ring-opacity-25 outline-none"
                 >
-                  Register
-                </a>
+                  Sign up
+                </Link>
               </li>
             </ul>
           </section>
