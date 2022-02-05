@@ -17,6 +17,11 @@ export default function Login() {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
+    if (!email || !password) {
+      alert("Please add email and password");
+      return;
+    }
+
     // Calls `signUp` function from the context
     const { error } = await signIn({ email, password });
 
@@ -59,7 +64,7 @@ export default function Login() {
             <input
               id="input-password"
               type="password"
-              placeholder="••••••••"
+              placeholder="password"
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
               required=""
               ref={passwordRef}

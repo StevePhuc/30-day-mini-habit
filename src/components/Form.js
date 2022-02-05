@@ -22,7 +22,12 @@ const Form = () => {
     async function getHabit() {
       try {
         setLoading(true);
-        let { data, error, status } = await supabase.from("habit").select("*").limit(1).single();
+        let { data, error, status } = await supabase
+          .from("habit")
+          .select("*")
+          .match({ user_id: user.id })
+          .limit(1)
+          .single();
 
         if (error && status !== 406) {
           throw error;
