@@ -12,7 +12,7 @@ const Form = () => {
   const { handleSubmit, reset, control, formState } = useForm();
   const navigate = useNavigate();
 
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
 
   const { errors } = formState;
 
@@ -27,6 +27,7 @@ const Form = () => {
         if (error && status !== 406) {
           throw error;
         } else if (error && status === 401) {
+          signOut();
           navigate("/login");
         }
 
@@ -189,7 +190,10 @@ const Form = () => {
                         )}
                       />
                     </div>
-                    <Icon color="action">alarm</Icon>
+                    <div className="flex align-items justify-between mb-2">
+                      <Icon color="action">alarm</Icon>
+                      <span className="text-xs">TIME ZONE: UTC+0 </span>
+                    </div>
                     <div className="mb-4 ">
                       <Controller
                         name="morningReminder"
