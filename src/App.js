@@ -5,6 +5,7 @@ import Signup from "./components/Signup";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/Auth";
 import Header from "./components/Header";
+import Tracking from "./components/Tracking";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route exact path="/" element={<Form />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/tracking" element={<Tracking />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

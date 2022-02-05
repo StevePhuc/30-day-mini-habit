@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { Controller } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import Icon from "@mui/material/Icon";
+import InputAdornment from "@mui/material/InputAdornment";
+
 // import Button from "@mui/material/Button";
 
 const Form = () => {
@@ -14,26 +16,23 @@ const Form = () => {
       <div className="font-mono bg-gray-400 w-full">
         <div className=" w-full">
           <div className="w-full flex justify-center ">
-            <div className="w-full xl:w-3/4 lg:w-11/12 flex width:100%">
+            <div className="w-full mt-6 mb-6 lg:w-11/12 flex">
               <div
-                className="h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
+                className="mt-20 mb-40 mr-6 h-auto rounded-lg bg-gray-400 hidden lg:block lg:w-5/12  bg-contain bg-no-repeat"
                 style={{
                   backgroundImage: `url('https://pbs.twimg.com/media/ETsUtf9UYAABhMo.jpg')`,
                 }}
               ></div>
 
-              <div className="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
-                <h3 className="pt-4 text-2xl text-center">Set up your MINI GOAL</h3>
+              <div className="w-full lg:w-7/12 bg-white p-5 rounded-lg ">
+                <h3 className="pt-4 text-2xl text-center ">Set up your MINI GOAL</h3>
                 <form
                   onSubmit={handleSubmit((data) => {
                     console.log(data);
                   })}
                 >
                   <div>
-                    <div className="mb-4">
-                      <div>
-                        <Icon color="action">self_improvement</Icon>
-                      </div>
+                    <div className="mt-10 mb-4">
                       <Controller
                         name="habit"
                         control={control}
@@ -41,6 +40,13 @@ const Form = () => {
                           <TextField
                             {...field}
                             className="block mb-2 text-sm font-bold text-gray-700"
+                            InputProps={{
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <Icon color="action">self_improvement</Icon>
+                                </InputAdornment>
+                              ),
+                            }}
                             error={!!errors.habit}
                             required
                             helperText={errors?.habit?.message}
@@ -68,7 +74,7 @@ const Form = () => {
                             helperText={errors?.startDate?.message}
                             label="Start Date"
                             id="startDate"
-                            variant="outlined"
+                            variant="filled"
                             fullWidth
                             InputLabelProps={{
                               shrink: true,
@@ -92,7 +98,7 @@ const Form = () => {
                             helperText={errors?.endDate?.message}
                             label="End Date"
                             id="endDate"
-                            variant="outlined"
+                            variant="filled"
                             fullWidth
                             InputLabelProps={{
                               shrink: true,
@@ -116,7 +122,7 @@ const Form = () => {
                             helperText={errors?.morningReminder?.message}
                             label="Morning Reminder"
                             id="morningReminder"
-                            variant="outlined"
+                            variant="filled"
                             fullWidth
                             InputLabelProps={{
                               shrink: true,
@@ -140,7 +146,7 @@ const Form = () => {
                             helperText={errors?.afternoonReminder?.message}
                             label="Afternoon Reminder"
                             id="afternoonReminder"
-                            variant="outlined"
+                            variant="filled"
                             fullWidth
                             InputLabelProps={{
                               shrink: true,
@@ -164,7 +170,7 @@ const Form = () => {
                             helperText={errors?.eveningReminder?.message}
                             label="Evening Reminder"
                             id="eveningReminder"
-                            variant="outlined"
+                            variant="filled"
                             fullWidth
                             InputLabelProps={{
                               shrink: true,
@@ -173,10 +179,7 @@ const Form = () => {
                         )}
                       />
                     </div>
-                    <div className="mb-4">
-                      <div>
-                        <Icon color="action">email</Icon>
-                      </div>
+                    <div className="mb-4 mt=10">
                       <Controller
                         name="email"
                         control={control}
@@ -184,6 +187,13 @@ const Form = () => {
                           <TextField
                             {...field}
                             className="block mb-2 text-sm font-bold text-gray-700"
+                            InputProps={{
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <Icon color="action">email</Icon>
+                                </InputAdornment>
+                              ),
+                            }}
                             error={!!errors.email}
                             required
                             helperText={errors?.email?.message}
@@ -199,9 +209,6 @@ const Form = () => {
                       />
                     </div>
                     <div className="mb-4">
-                      <div>
-                        <Icon color="action">phone</Icon>
-                      </div>
                       <Controller
                         name="phoneNumber"
                         control={control}
@@ -209,6 +216,13 @@ const Form = () => {
                           <TextField
                             {...field}
                             className="block mb-2 text-sm font-bold text-gray-700"
+                            InputProps={{
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <Icon color="action">phone</Icon>
+                                </InputAdornment>
+                              ),
+                            }}
                             error={!!errors.phoneNumber}
                             required
                             helperText={errors?.phoneNumber?.message}

@@ -32,7 +32,7 @@ export default function Login() {
   return (
     <>
       <div className="w-full">
-        <div className="mx-auto bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <div className="mx-auto bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 ">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <h3 className="text-xl font-medium text-gray-900 dark:text-white">Sign in</h3>
             <label
