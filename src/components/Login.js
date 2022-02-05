@@ -67,12 +67,12 @@ export default function Login() {
 
             <br />
 
-            <a
-              href="#"
+            <Link
+              to="/forgot"
               className="text-sm text-blue-700 hover:underline ml-auto dark:text-blue-500"
             >
               Forgot Password?
-            </a>
+            </Link>
 
             <button
               type="submit"
