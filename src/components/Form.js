@@ -57,7 +57,7 @@ const Form = () => {
       }
     }
     getHabit();
-  }, [reset, navigate, signOut]);
+  }, [reset, navigate, signOut, user?.id]);
 
   const handleSave = async (data) => {
     try {
