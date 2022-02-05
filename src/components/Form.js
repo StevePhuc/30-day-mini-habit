@@ -52,7 +52,7 @@ const Form = () => {
       }
     }
     getHabit();
-  }, [reset, navigate]);
+  }, [reset, navigate, signOut]);
 
   const handleSave = async (data) => {
     try {
