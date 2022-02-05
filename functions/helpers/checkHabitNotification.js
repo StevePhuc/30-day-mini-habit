@@ -1,4 +1,4 @@
-const { isAfter, isBefore, format, isSameMinute } = require("date-fns");
+const { isAfter, isBefore, format } = require("date-fns");
 const sendEmail = require("./sendEmail");
 
 module.exports = (habit) => {
@@ -52,6 +52,6 @@ module.exports = (habit) => {
         }
       }
     }
-    console.log("----- done habit id", item.id);
+    console.log("done habit id----", item.id);
   });
 };

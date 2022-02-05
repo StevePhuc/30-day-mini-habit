@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
 
 export default function Signup() {
@@ -9,8 +9,6 @@ export default function Signup() {
   // Get signUp function from the auth context
   const { signUp } = useAuth();
 
-  const navigate = useNavigate();
-
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -18,21 +16,20 @@ export default function Signup() {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    // Calls `signUp` function from the context
-    const { error } = await signUp({ email, password });
-
-    if (error) {
-      alert("error signing in");
-    } else {
-      // Redirect user to Dashboard
-      navigate("/");
+    if (!email || !password) {
+      alert("Please add email and password");
+      return;
     }
+
+    // Calls `signUp` function from the context
+    await signUp({ email, password });
   }
 
   return (
     <>
-      <div className="w-full">
-        <div className="mx-auto bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8">
+
+      <div className="w-full dark:bg-gray-800 h-screen pt-20">
+        <div className="mx-auto bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <h3 className="text-xl font-medium text-gray-900 dark:text-white">Sign Up</h3>
             <label
@@ -59,7 +56,7 @@ export default function Signup() {
             <input
               id="input-password"
               type="password"
-              placeholder="••••••••"
+              placeholder="password"
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
               required=""
               ref={passwordRef}
