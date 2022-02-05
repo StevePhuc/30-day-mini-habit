@@ -32,15 +32,15 @@ export function AuthProvider({ children }) {
   const value = {
     signUp: async (signupVo) => {
       // Calls `signUp` function from the context
-      const { error, user } = await supabase.auth.signUp(signupVo);
+      const { error } = await supabase.auth.signUp(signupVo);
 
       if (error) {
         console.log("signUp error", error);
         alert("Error signup, please check: " + (error?.message || "Contact support"));
       } else {
         console.log("signUp user", user);
-        setUser(user);
-        navigate("/");
+        alert("Please check your email to verify your email now");
+        navigate("/login");
       }
     },
     signIn: (data) => supabase.auth.signIn(data),
