@@ -11,9 +11,9 @@ const Header = () => {
 
   return (
     <>
-      <nav className="w-full py-6 bg-white w-screen">
+      <nav className="w-full py-6 bg-white w-screen dark:bg-gray-800">
         <div className="flex items-center justify-between mx-auto xl:max-w-7xl lg:max-w-5xl md:max-w-3xl md:px-2 px-4">
-          <section className="flex items-center text-gray-900 space-x-2">
+          <section className="flex items-center text-gray-900 dark:text-white space-x-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-7 w-7"
@@ -26,7 +26,9 @@ const Header = () => {
                 clipRule="evenodd"
               />
             </svg>
-            <span className="font-bold text-xl">30-DAY-MINI-HABIT</span>
+            <span className="font-bold text-xl text-gray-900 dark:text-white">
+              30-DAY-MINI-HABIT
+            </span>
           </section>
           <section>
             <button className="flex md:hidden hover:bg-gray-100 p-2 rounded-full transition-all focus:ring focus:ring-purple-500 focus:ring-opacity-25 active:bg-gray-200 outline-none">

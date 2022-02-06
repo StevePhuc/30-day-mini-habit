@@ -26,12 +26,13 @@ module.exports = (habit) => {
 
         const toEmail = item.reminder_type.email;
         const habitName = item.habit_name;
+        const html = `click here to mark as done <a href = "https://mini-habit-30.netlify.app/api/done?id=${item.id}&user_id=${item.user_id}"> CLICK HERE</a>`;
         if (isReminderMorning) {
           console.log("send morning reminder");
           sendEmail({
             to: toEmail,
             subject: "Morning Reminder: " + habitName,
-            html: "click here to mark as done",
+            html: html,
           });
         }
         if (isReminderAfternoon) {
@@ -39,7 +40,7 @@ module.exports = (habit) => {
           sendEmail({
             to: toEmail,
             subject: "Afternoon Reminder: " + habitName,
-            html: "click here to mark as done",
+            html: html,
           });
         }
         if (isReminderEvening) {
@@ -47,7 +48,7 @@ module.exports = (habit) => {
           sendEmail({
             to: toEmail,
             subject: "Evening Reminder: " + habitName,
-            html: "click here to mark as done",
+            html: html,
           });
         }
       }

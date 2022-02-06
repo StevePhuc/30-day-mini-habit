@@ -10,7 +10,7 @@ import RequireAuth from "./components/RequireAuth";
 
 function App() {
   return (
-    <div>
+    <div className="dark:bg-gray-800 min-h-screen">
       <BrowserRouter>
         <AuthProvider>
           <Header />
