@@ -31,7 +31,7 @@ const Header = () => {
             </span>
           </section>
           <section>
-            <button className="flex md:hidden hover:bg-gray-100 p-2 rounded-full transition-all focus:ring focus:ring-purple-500 focus:ring-opacity-25 active:bg-gray-200 outline-none">
+            <button className="flex md:hidden hover:bg-gray-100 p-2 rounded-full transition-all focus:ring focus:ring-blue-500 focus:ring-opacity-25 active:bg-gray-200 outline-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -51,7 +51,7 @@ const Header = () => {
                   <li>
                     <Link
                       to="/login"
-                      className="bg-transparent  px-4 py-1 rounded-xl border-purple-500 border-2 text-purple-500 font-semibold hover:bg-gray-100 active:bg-gray-200 focus:ring focus:ring-purple-500 focus:ring-opacity-25 outline-none"
+                      className="bg-transparent  px-4 py-1 rounded-xl border-blue-500 border-2 text-blue-500 font-semibold hover:bg-gray-100 active:bg-gray-200 focus:ring focus:ring-blue-500 focus:ring-opacity-25 outline-none"
                     >
                       Login
                     </Link>
@@ -59,7 +59,7 @@ const Header = () => {
                   <li>
                     <Link
                       to="/signup"
-                      className="bg-purple-500 px-4 py-1 rounded-xl border-purple-500 border-2 text-white hover:bg-purple-400 active:bg-purple-600 focus:ring focus:ring-purple-500 focus:ring-opacity-25 outline-none"
+                      className="bg-blue-500 px-4 py-1 rounded-xl border-blue-500 border-2 text-white hover:bg-blue-400 active:bg-blue-600 focus:ring focus:ring-blue-500 focus:ring-opacity-25 outline-none"
                     >
                       Sign up
                     </Link>
@@ -71,7 +71,7 @@ const Header = () => {
                     <Link
                       onClick={handleSignOut}
                       to="/login"
-                      className="bg-transparent  px-4 py-1 rounded-xl border-purple-500 border-2 text-purple-500 font-semibold hover:bg-gray-100 active:bg-gray-200 focus:ring focus:ring-purple-500 focus:ring-opacity-25 outline-none"
+                      className="bg-transparent  px-4 py-1 rounded-xl border-blue-500 border-2 text-blue-500 font-semibold hover:bg-gray-100 active:bg-gray-200 focus:ring focus:ring-blue-500 focus:ring-opacity-25 outline-none"
                     >
                       Logout
                     </Link>
