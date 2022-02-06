@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import Chart from "react-apexcharts";
 import addDays from "date-fns/addDays";
 
