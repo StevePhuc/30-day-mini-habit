@@ -56,7 +56,7 @@ const Tracking = () => {
   return (
     <div className="mt-6 ml-30 mr-30 mb-20 bg-white flex flex-col">
       <div className="mb-20 mt-10 text-center">
-        <div className="text-2xl font-serif font-bold">{`Habit ${habit.habit_name}`}</div>
+        <div className="text-2xl font-serif font-bold">{` ${habit.habit_name}`}</div>
         <div className="my-5">
           <Link
             to="/habit"

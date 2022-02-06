@@ -1,98 +1,74 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
+import addDays from "date-fns/addDays";
 
-class TrackingChart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      options: {
-        title: { text: "Habit Tracking", display: true },
-        plotOptions: {
-          bar: {
-            horizontal: true,
-            distributed: true,
-            dataLabels: {
-              hideOverflowingLabels: false,
-            },
-          },
+const TrackingChart = ({ habitTrack }) => {
+  console.log("habitTrack", habitTrack);
 
-          style: {
-            colors: ["#f3f4f5", "#fff"],
+  const chartColor = ["#fc0303", "#fc8003", "#fcfc03", "#2dfc03", "#03fcfc", "#0b03fc", "#ca03fc"];
+
+  const chartHabit = habitTrack
+    .filter((habit) => {
+      return habit.done === true;
+    })
+    .map((habit) => {
+      return {
+        x: "date",
+        y: [new Date(habit.date).getTime(), addDays(new Date(habit.date), 1).getTime()],
+        fillColor: chartColor[0],
+      };
+    });
+  console.log("chartHabit", chartHabit);
+
+  const state = {
+    options: {
+      title: { text: "Habit Tracking", display: true },
+      plotOptions: {
+        bar: {
+          horizontal: true,
+          distributed: true,
+          dataLabels: {
+            hideOverflowingLabels: false,
           },
         },
 
-        xaxis: {
-          type: "datetime",
-        },
-
-        yaxis: {
-          show: false,
-        },
-        grid: {
-          row: {
-            colors: ["#f3f4f5", "#fff"],
-            opacity: 1,
-          },
+        style: {
+          colors: ["#f3f4f5", "#fff"],
         },
       },
-      series: [
-        {
-          data: [
-            {
-              x: "Code",
-              y: [new Date("2019-03-02").getTime(), new Date("2019-03-08").getTime()],
-              fillColor: "#fc0303",
-            },
 
-            {
-              x: "Code",
-              y: [new Date("2019-03-08").getTime(), new Date("2019-03-16").getTime()],
-              fillColor: "#fc8003",
-            },
-            {
-              x: "Code",
-              y: [new Date("2019-03-16").getTime(), new Date("2019-03-22").getTime()],
-              fillColor: "#fcfc03",
-            },
-            {
-              x: "Code",
-              y: [new Date("2019-03-22").getTime(), new Date("2019-04-03").getTime()],
-              fillColor: "#2dfc03",
-            },
-            {
-              x: "Code",
-              y: [new Date("2019-04-05").getTime(), new Date("2019-04-12").getTime()],
-              fillColor: "#03fcfc",
-            },
-            {
-              x: "Code",
-              y: [new Date("2019-04-12").getTime(), new Date("2019-04-20").getTime()],
-              fillColor: "#0b03fc",
-            },
+      xaxis: {
+        type: "datetime",
+      },
 
-            {
-              x: "Code",
-              y: [new Date("2019-04-21").getTime(), new Date("2019-04-30").getTime()],
-              fillColor: "#ca03fc",
-            },
-          ],
+      yaxis: {
+        show: false,
+      },
+      grid: {
+        row: {
+          colors: ["#f3f4f5", "#fff"],
+          opacity: 1,
         },
-      ],
-    };
-  }
-  render() {
-    return (
-      <div className="text-xl">
-        <Chart
-          options={this.state.options}
-          series={this.state.series}
-          type="rangeBar"
-          height="250"
-          width="100%"
-        />
-      </div>
-    );
-  }
-}
+      },
+    },
+    series: [
+      {
+        data: chartHabit,
+      },
+    ],
+  };
+
+  return (
+    <div className="text-xl">
+      <Chart
+        options={state.options}
+        series={state.series}
+        type="rangeBar"
+        height="250"
+        width="100%"
+      />
+    </div>
+  );
+};
 
 export default TrackingChart;
