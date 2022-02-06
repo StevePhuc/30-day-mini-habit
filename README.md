@@ -1,11 +1,12 @@
 # 30-day-mini-habit
 
-# Getting Started with Create React App
+Build at [Hackathon challenge 🏆 Goal-tracking app](https://troopl.com/challenges/goal-tracking-app)
+## Getting Started with Create React App
 
 - This project was bootstrapped with [Create React App] and Tailwind Css 
 - See https://tailwindcss.com/docs/guides/create-react-app
 
-# Using Netlify Serverless Functions with Netlify Dev
+## Using Netlify Serverless Functions with Netlify Dev
 
 - Follow https://www.youtube.com/watch?v=bVmUHvVK8Hs&ab_channel=JamesQQuick
     - create file `netlify.toml` with
@@ -24,11 +25,11 @@
 
 - example function hello.js
 
-# Authentication
+## Authentication
 
 - https://supabase.com/docs/guides/with-react
 
-- Setup schema https://supabase.com/docs/guides/with-react#set-up-the-database-schema
+- Setup schema https://supabase.com/docs/guides/with-react##set-up-the-database-schema
     - create profiles   
 ```
 -- Create a table for public "profiles"
@@ -62,11 +63,11 @@ create policy "Users can update own profile."
 ```
     - no need for real time or storage.
 
-# Sign in, Sign up
+## Sign in, Sign up
 
 - See https://ruanmartinelli.com/posts/supabase-authentication-react
 
-# Table habit
+## Table habit
 
 ```
 -- Create a table for public "profiles"
@@ -99,9 +100,9 @@ create policy "Individuals can delete their own habit." on habit for
 
 ```
 
-# Table habit_track
+## Table habit_track
 
-# Cron
+## Cron
 
 - https://supabase.com/blog/2021/03/05/postgres-as-a-cron-server
 - https://github.com/citusdata/pg_cron
