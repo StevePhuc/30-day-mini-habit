@@ -4,17 +4,120 @@ import addDays from "date-fns/addDays";
 const TrackingChart = ({ habitTrack }) => {
   console.log("habitTrack", habitTrack);
 
+  habitTrack = [
+    {
+      date: "2022-02-06",
+      done: true,
+    },
+    {
+      date: "2022-02-07",
+      done: true,
+    },
+    {
+      date: "2022-02-08",
+      done: true,
+    },
+    {
+      date: "2022-02-09",
+      done: true,
+    },
+    {
+      date: "2022-02-10",
+      done: true,
+    },
+    {
+      date: "2022-02-11",
+      done: true,
+    },
+    {
+      date: "2022-02-12",
+      done: true,
+    },
+    {
+      date: "2022-02-13",
+      done: true,
+    },
+    {
+      date: "2022-02-14",
+      done: true,
+    },
+    {
+      date: "2022-02-15",
+      done: true,
+    },
+    {
+      date: "2022-02-16",
+      done: true,
+    },
+    {
+      date: "2022-02-17",
+      done: true,
+    },
+    {
+      date: "2022-02-18",
+      done: true,
+    },
+    {
+      date: "2022-02-19",
+      done: true,
+    },
+    {
+      date: "2022-02-20",
+      done: true,
+    },
+    {
+      date: "2022-02-21",
+      done: true,
+    },
+    {
+      date: "2022-02-22",
+      done: true,
+    },
+    {
+      date: "2022-02-23",
+      done: true,
+    },
+    {
+      date: "2022-02-24",
+      done: true,
+    },
+    {
+      date: "2022-02-25",
+      done: true,
+    },
+    {
+      date: "2022-02-26",
+      done: true,
+    },
+    {
+      date: "2022-02-27",
+      done: true,
+    },
+    {
+      date: "2022-02-28",
+      done: true,
+    },
+    {
+      date: "2022-02-29",
+      done: true,
+    },
+    {
+      date: "2022-02-30",
+      done: true,
+    },
+  ];
+
   const chartColor = ["#fc0303", "#fc8003", "#fcfc03", "#2dfc03", "#03fcfc", "#0b03fc", "#ca03fc"];
 
   const chartHabit = habitTrack
     .filter((habit) => {
       return habit.done === true;
     })
-    .map((habit) => {
+    .map((habit, index) => {
       return {
         x: "date",
         y: [new Date(habit.date).getTime(), addDays(new Date(habit.date), 1).getTime()],
-        fillColor: chartColor[0],
+        fillColor: chartColor[Math.floor(index / 4)],
       };
     });
   console.log("chartHabit", chartHabit);
