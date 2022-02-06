@@ -1,5 +1,5 @@
 import "./App.css";
-import Form from "./components/Form";
+import Habit from "./components/Habit";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -32,7 +32,7 @@ function App() {
               path="/habit"
               element={
                 <RequireAuth redirectTo="/login">
-                  <Form />
+                  <Habit />
                 </RequireAuth>
               }
             />
