@@ -112,32 +112,30 @@ const Form = () => {
   return (
     <>
       <div className="font-mono bg-gray-400 w-full">
-        <div className=" w-full">
-          <div className="w-full flex justify-center ">
-            <div className="w-full mt-6 mb-6 lg:w-11/12 flex">
-              <div
-                className="mt-20 mb-40 mr-6 h-auto rounded-lg bg-gray-400 hidden lg:block lg:w-5/12  bg-contain bg-no-repeat"
-                style={{
-                  backgroundImage: `url('https://pbs.twimg.com/media/ETsUtf9UYAABhMo.jpg')`,
-                }}
-              ></div>
-              {getValues()?.id ? (
-                <HabitEdit
-                  control={control}
-                  errors={errors}
-                  handleSubmit={handleSubmit}
-                  handleSave={handleSave}
-                />
-              ) : (
-                <HabitNew
-                  watch={watch}
-                  control={control}
-                  errors={errors}
-                  handleSubmit={handleSubmit}
-                  handleSave={handleSave}
-                />
-              )}
-            </div>
+        <div className="w-full flex justify-center ">
+          <div className="w-full mt-6 mb-6 lg:w-11/12 flex">
+            <div
+              className="my-10 ml-10 mr-10 h-auto rounded-lg bg-gray-400 hidden lg:block lg:w-5/12  bg-contain bg-no-repeat"
+              style={{
+                backgroundImage: `url('https://pbs.twimg.com/media/ETsUtf9UYAABhMo.jpg')`,
+              }}
+            ></div>
+            {getValues()?.id ? (
+              <HabitEdit
+                control={control}
+                errors={errors}
+                handleSubmit={handleSubmit}
+                handleSave={handleSave}
+              />
+            ) : (
+              <HabitNew
+                watch={watch}
+                control={control}
+                errors={errors}
+                handleSubmit={handleSubmit}
+                handleSave={handleSave}
+              />
+            )}
           </div>
         </div>
       </div>

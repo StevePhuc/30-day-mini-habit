@@ -33,7 +33,7 @@ const steps = [
   },
   {
     label: "Who",
-    description: "If you missing 2 days in a row, who can reminder you",
+    description: "If you missing 2 days in a row, would you like to have a friend remind you?",
   },
 ];
 
