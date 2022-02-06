@@ -6,7 +6,7 @@ class TrackingChart extends Component {
     super(props);
     this.state = {
       options: {
-        title: { text: "GOAL ACHIEVEMENT", display: true },
+        title: { text: "Habit Tracking", display: true },
         plotOptions: {
           bar: {
             horizontal: true,

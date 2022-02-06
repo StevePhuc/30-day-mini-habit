@@ -20,13 +20,22 @@ function App() {
               path="/"
               element={
                 <RequireAuth redirectTo="/login">
-                  <Form />
+                  <Tracking />
                 </RequireAuth>
               }
             />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/tracking" element={<Tracking />} />
+
+            <Route
+              exact
+              path="/habit"
+              element={
+                <RequireAuth redirectTo="/login">
+                  <Form />
+                </RequireAuth>
+              }
+            />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
