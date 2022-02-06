@@ -10,11 +10,11 @@ const TrackingChart = ({ habitTrack }) => {
     .filter((habit) => {
       return habit.done === true;
     })
-    .map((habit) => {
+    .map((habit, index) => {
       return {
         x: "date",
         y: [new Date(habit.date).getTime(), addDays(new Date(habit.date), 1).getTime()],
-        fillColor: chartColor[0],
+        fillColor: chartColor[Math.floor(index / 4)],
       };
     });
   console.log("chartHabit", chartHabit);
