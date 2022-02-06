@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Tracking from "./components/Tracking";
 import RequireAuth from "./components/RequireAuth";
+import PassLost from "./components/PassLost";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               />
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/forgot" element={<PassLost />} />
 
               <Route
                 exact
